@@ -15,11 +15,11 @@ def lcm(x, y):
 
 class Zlomek:
     def __init__(self, citatel, jmenovatel):
-        self._citatel = citatel
+        self._citatel = int(citatel)
         if jmenovatel == 0:
             print("Neplatny jemnovatel")
             exit()
-        self._jmenovatel = jmenovatel
+        self._jmenovatel = int(jmenovatel)
         if self._jmenovatel < 0:
             self._citatel = -self._citatel
             self._jmenovatel = -self._jmenovatel
@@ -37,6 +37,9 @@ class Zlomek:
         citatel_1 = (self._citatel * l // self._jmenovatel) - (next._citatel * l // next._jmenovatel)
         m = gcd(citatel_1, l)
         return Zlomek(citatel_1 // m, l // m)
+
+    def __pow__(self, next):
+        return(Zlomek(int(self._citatel ** (next._citatel/next._jmenovatel)), int(self._jmenovatel ** (next._citatel/next._jmenovatel))))
 
     def __mul__(self, next):
         citatel_1 = self._citatel * next._citatel
@@ -61,10 +64,10 @@ class Zlomek:
 
     def __str__(self):
         if self._jmenovatel == 1:
-            return self._citatel
+            return str(self._citatel)
         return f"{self._citatel}/{self._jmenovatel}"
-
-z1 = Zlomek(3,4)
-z2 = Zlomek(1,3)
-z3 = z1 + z2
-print(f"{z1} + {z2} = {z3}")
+if __name__ == "__main__":
+    z1 = Zlomek(3,4)
+    z2 = Zlomek(1,3)
+    z3 = z1 + z2
+    print(f"{z1} + {z2} = {z3}")
