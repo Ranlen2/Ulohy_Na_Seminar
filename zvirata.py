@@ -65,4 +65,3 @@ print(azor.get_jmeno())
 print(azor.get_pocet_nohou())
 print(azor.go_to("Ceske Budejovice"))
 print(azor.eat("Salam"))
-
