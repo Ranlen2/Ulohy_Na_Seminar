@@ -1,3 +1,5 @@
+#code by Rene Cakan
+
 import tkinter
 import sys
 
@@ -15,7 +17,6 @@ class App(tkinter.Tk):
         self.canvas.pack()
         self.canvas.create_image(0, 0, anchor='nw', image=self.obrazek)
 
-        # provést rozkostičkování
         self.pixelate()
         self.mainloop()
 
@@ -24,7 +25,6 @@ class App(tkinter.Tk):
         for y in range(0, self.vyska, ts):
             for x in range(0, self.sirka, ts):
                 r_sum = g_sum = b_sum = count = 0
-                # spočítat průměr barvy v čtverečku
                 for by in range(ts):
                     for bx in range(ts):
                         if x+bx < self.sirka and y+by < self.vyska:
@@ -37,14 +37,12 @@ class App(tkinter.Tk):
                 g_avg = g_sum // count
                 b_avg = b_sum // count
                 color = f'#{r_avg:02x}{g_avg:02x}{b_avg:02x}'
-                # vyplnit čtvereček průměrnou barvou
                 for by in range(ts):
                     for bx in range(ts):
                         if x+bx < self.sirka and y+by < self.vyska:
                             self.obrazek.put(color, (x+bx, y+by))
         print("Obrázek byl rozkostičkován.")
 
-# --- HLAVNÍ PROGRAM ---
 if __name__ == "__main__":
     imagefile = "onepiece.png"
     app = App(imagefile, tile_size=20)
